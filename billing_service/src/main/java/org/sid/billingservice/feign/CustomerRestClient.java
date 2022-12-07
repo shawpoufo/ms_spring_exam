@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 //Connect with "CUSTOMER-SERVICE" Microservice
-@FeignClient(name = "CUSTOMER-SERVICE")
+@FeignClient(name = "CUSTOMER.SERVICE")
 public interface CustomerRestClient {
     @GetMapping(path = "/customers/{id}")
     Customer getCustomerById(@PathVariable(name = "id") Long id);

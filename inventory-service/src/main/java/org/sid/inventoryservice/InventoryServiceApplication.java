@@ -17,9 +17,9 @@ public class InventoryServiceApplication {
     @Bean
     CommandLineRunner start(ProductRepository productRepository){
         return args -> {
-            productRepository.save(new Product(null,"P1",100,1));
-            productRepository.save(new Product(null,"p2",200,1));
-            productRepository.save(new Product(null,"p3",300,1));
+            productRepository.save(new Product(null,"Ordinateur",788,12));
+            productRepository.save(new Product(null,"Imprimante",788,12));
+            productRepository.save(new Product(null,"Smartphone",788,12));
             productRepository.findAll().forEach(p->{
                 System.out.println(p.toString());
             });

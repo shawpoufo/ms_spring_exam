@@ -38,4 +38,8 @@ public class BillingRestController {
         });
         return bill;
     }
+    @GetMapping(path="/customers/{id}")
+    public Customer getCustomer(@PathVariable(name = "id") Long id){
+        return customerRestClient.getCustomerById(id);
+    }
 }

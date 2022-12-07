@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "INVENTORY-SERVICE")
+//Connect with "PRODUCT-SERVICE" Microservice
+@FeignClient(name = "PRODUCT.SERVICE")
 public interface ProductItemRestClient {
 
-    @GetMapping(path = "/inventory")
+    @GetMapping(path = "/products")
     PagedModel<Product> pageProducts(@RequestParam(value = "page") int page,
                                      @RequestParam(name = "size") int size);
 
-    @GetMapping(path = "/inventory/{id}")
+    @GetMapping(path = "/products/{id}")
     Product getProductById(@PathVariable(name = "id") Long id);
 }
