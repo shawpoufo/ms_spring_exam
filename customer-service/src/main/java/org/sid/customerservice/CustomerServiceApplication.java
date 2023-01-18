@@ -1,7 +1,8 @@
 package org.sid.customerservice;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import org.sid.customerservice.entities.Customer;
+import org.sid.customerservice.repositories.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,17 +12,19 @@ import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 @SpringBootApplication
 public class CustomerServiceApplication {
 
+
     public static void main(String[] args) {
         SpringApplication.run(CustomerServiceApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner start(CustomerRepository customerRepository, RepositoryRestConfiguration repositoryRestConfiguration){
+    @Bean //execute au démarrage
+    CommandLineRunner start(CustomerRepository customerRepository, RepositoryRestConfiguration restConfiguration){
+
+        restConfiguration.exposeIdsFor(Customer.class);
         return args -> {
-            repositoryRestConfiguration.exposeIdsFor(Customer.class);
-            customerRepository.save(new Customer(null,"A","a@gmail.com"));
-            customerRepository.save(new Customer(null,"B","b@gmail.com"));
-            customerRepository.save(new Customer(null,"C","c@gmail.com"));
+            customerRepository.save(new Customer(null,"u1","u1@gmail.com"));
+            customerRepository.save(new Customer(null,"u2","u2@gmail.com"));
+
             customerRepository.findAll().forEach(c->{
                 System.out.println(c.toString());
             });
